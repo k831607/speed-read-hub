@@ -181,7 +181,7 @@
   --linen-weave:
     repeating-linear-gradient(0deg, oklch(.3 .03 60 / .025) 0 1px, transparent 1px 3px),
     repeating-linear-gradient(90deg, oklch(.3 .03 60 / .025) 0 1px, transparent 1px 3px);
-  --hero-overlay: linear-gradient(to bottom, oklch(.955 .012 80 / .9), oklch(.955 .012 80 / .78) 55%, oklch(.955 .012 80 / .4) 85%, var(--background));
+  --hero-overlay: radial-gradient(ellipse 48% 55% at 50% 38%, oklch(.955 .012 80 / .85), oklch(.955 .012 80 / 0) 100%), linear-gradient(to bottom, transparent 80%, var(--background));
   --panel-shadow: 0 1px 0 oklch(1 0 0 / .8) inset, 0 18px 50px oklch(.35 .04 50 / .14);
   --card-shadow: 0 1px 2px oklch(.35 .04 50 / .08), 0 8px 24px oklch(.35 .04 50 / .06);
 }
@@ -192,7 +192,7 @@ body {
 ::selection { background: oklch(.8 .15 90 / .45); }
 .site-header { background: oklch(.955 .012 80 / .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
 .hero { height: 650px; }
-.hero-photo { object-position: center top; filter: sepia(.55) saturate(.6) brightness(1.1); }
+.hero-photo { object-position: center top; }
 .hero-shade { background: var(--hero-overlay); }
 .hero-copy { animation: appear .7s ease-out both; }
 .hero-output { box-shadow: var(--card-shadow); }
@@ -205,7 +205,7 @@ body {
 @keyframes appear { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 639px) {
   .hero { height: 640px; }
-  .hero-photo { object-position: center; }
+  .hero-photo { object-position: center; opacity: .28; }
   .hero-output { bottom: 25px; }
 }
 @media (prefers-reduced-motion: reduce) {
