@@ -142,3 +142,53 @@
     color: var(--color-foreground);
   }
 }
+
+/* Video Speed Reader: charcoal surfaces, violet accents, restrained contrast. */
+@theme inline {
+  --font-sans: 'Inter', ui-sans-serif, sans-serif;
+  --color-mint: var(--mint);
+  --color-peach: var(--peach);
+}
+:root, .dark {
+  --radius: .5rem;
+  --background: oklch(.135 .006 285);
+  --foreground: oklch(.96 .004 285);
+  --card: oklch(.175 .009 285);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(.72 .18 295);
+  --primary-foreground: oklch(.13 .03 295);
+  --secondary: oklch(.22 .012 285);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(.69 .015 285);
+  --accent: oklch(.24 .038 295);
+  --accent-foreground: var(--foreground);
+  --border: oklch(.29 .012 285);
+  --input: oklch(.33 .015 285);
+  --ring: var(--primary);
+  --destructive: oklch(.75 .15 25);
+  --mint: oklch(.79 .12 170);
+  --peach: oklch(.8 .11 60);
+  --hero-overlay: linear-gradient(to bottom, oklch(.135 .006 285 / .75), oklch(.135 .006 285 / .5) 55%, oklch(.135 .006 285 / .08) 85%, var(--background));
+  --panel-shadow: 0 24px 70px oklch(.06 0 0 / .25);
+}
+body { font-family: var(--font-sans); letter-spacing: 0; -webkit-font-smoothing: antialiased; }
+.site-header { background: var(--background); border-bottom: 1px solid var(--border); }
+.hero { height: 650px; }
+.hero-photo { object-position: center top; }
+.hero-shade { background: var(--hero-overlay); }
+.hero-copy { animation: appear .7s ease-out both; }
+.auth-panel { box-shadow: var(--panel-shadow); }
+.feature-card { transition: border-color .2s, transform .2s; }
+.feature-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+@keyframes appear { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 639px) {
+  .hero { height: 640px; }
+  .hero-photo { object-position: center; }
+  .hero-output { bottom: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
