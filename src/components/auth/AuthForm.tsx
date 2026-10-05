@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Eye, EyeOff, Loader2, LockKeyhole } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,7 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
   const [email, setEmail] = useState(''); const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); const [busy, setBusy] = useState(false);
   const [error, setError] = useState(''); const [notice, setNotice] = useState('');
-  useEffect(() => { if (user) void navigate({ to: '/app', replace: true }); }, [user, navigate]);
+  useEffect(() => { if (user) navigate('/app', { replace: true }); }, [user, navigate]);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setBusy(true); setError(''); setNotice('');
     try {
@@ -22,7 +22,7 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
       if (!result.data.session) { setNotice('Check your email to confirm your account before signing in.'); return; }
       const verified = await supabase.auth.getUser();
       if (verified.error || !verified.data.user) { setError('Please sign in again to continue.'); return; }
-      await navigate({ to: '/app', replace: true });
+      navigate('/app', { replace: true });
     } catch { setError('Unable to connect. Please try again.'); }
     finally { setBusy(false); }
   }

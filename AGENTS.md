@@ -11,7 +11,8 @@
 
 ## Application rules
 - Use the generated Cloud browser client and only the default auth user record for v1; no custom schema is needed.
-- Keep public auth pages at /auth and /sign-up and the app under the client-only _authenticated layout; this avoids SSR session redirect loops.
+- This is a plain Vite + React SPA (no SSR). Routing is client-side with React Router in src/AppRoutes.tsx; vercel.json rewrites every path to index.html so deep links resolve.
+- Keep public auth pages at /auth (alias /sign-in) and /sign-up, and protected pages under the RequireAuth guard (/app).
 - Keep one root auth listener and expose session state through AuthContext; this keeps header actions and route invalidation consistent.
-- Share authentication forms and brand controls in PascalCase component files; route filenames retain TanStack conventions.
+- Share authentication forms and brand controls in PascalCase component files; page components live in src/pages.
 - Keep all visual values in the global semantic theme and use existing UI controls; this preserves consistent theming.
