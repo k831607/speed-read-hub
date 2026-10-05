@@ -171,13 +171,13 @@
   --destructive: oklch(.75 .15 25);
   --mint: oklch(.79 .12 170);
   --peach: oklch(.8 .11 60);
-  --hero-overlay: linear-gradient(to bottom, oklch(.135 .006 285 / .36), oklch(.135 .006 285 / .08) 70%, var(--background));
+  --hero-overlay: linear-gradient(to bottom, oklch(.135 .006 285 / .75), oklch(.135 .006 285 / .5) 55%, oklch(.135 .006 285 / .08) 85%, var(--background));
   --panel-shadow: 0 24px 70px oklch(.06 0 0 / .25);
 }
 body { font-family: var(--font-sans); letter-spacing: 0; -webkit-font-smoothing: antialiased; }
 .site-header { background: var(--background); border-bottom: 1px solid var(--border); }
 .hero { height: 650px; }
-.hero-photo { object-position: center 61%; }
+.hero-photo { object-position: center top; }
 .hero-shade { background: var(--hero-overlay); }
 .hero-copy { animation: appear .7s ease-out both; }
 .auth-panel { box-shadow: var(--panel-shadow); }
