@@ -211,3 +211,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Next.js App Router files live outside src/ — scan them for Tailwind classes too. */
+@source "../app";

@@ -1,11 +1,6 @@
-import { Link } from "react-router-dom";
-import { usePageHead } from "@/lib/page-head";
+import Link from 'next/link';
 
 export function NotFound() {
-  usePageHead(
-    "Page not found — Video Speed Reader",
-    "The page you're looking for doesn't exist or has been moved.",
-  );
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -16,7 +11,7 @@ export function NotFound() {
         </p>
         <div className="mt-6">
           <Link
-            to="/"
+            href="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Go home

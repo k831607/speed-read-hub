@@ -10,9 +10,11 @@
 <!-- LOVABLE:END -->
 
 ## Application rules
-- Backend is the project's own Supabase project. Use the single client in src/integrations/supabase/client.ts, configured only via VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY; use only the default auth user record for v1, no custom schema.
-- This is a plain Vite + React SPA (no SSR). Routing is client-side with React Router in src/AppRoutes.tsx; vercel.json rewrites every path to index.html so deep links resolve.
-- Keep public auth pages at /auth (alias /sign-in) and /sign-up, and protected pages under the RequireAuth guard (/app).
-- Keep one root auth listener and expose session state through AuthContext; this keeps header actions and route invalidation consistent.
-- Share authentication forms and brand controls in PascalCase component files; page components live in src/pages.
+- Next.js 16 App Router (since M1). Routes live in app/; their UI lives in src/views and src/components. Tailwind 4 via @tailwindcss/postcss; the theme lives in app/globals.css.
+- Backend is the project's own Supabase project. Client components use the single browser client in src/integrations/supabase/client.ts (cookie-based, from src/lib/supabase/client.ts); Server Components and Route Handlers use src/lib/supabase/server.ts. Env: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, and server-only SUPABASE_SECRET_KEY (never NEXT_PUBLIC_).
+- middleware.ts refreshes the Supabase session cookie on every request.
+- Public auth pages are /sign-in (legacy /auth redirects there) and /sign-up; protected pages (/app, /upload) check the user on the server and redirect to /sign-in.
+- Keep one root auth listener (src/components/AuthProvider.tsx) and expose session state through AuthContext.
+- Schema changes go in supabase/migrations/*.sql and are committed to git.
+- worker/ is the Python Whisper worker deployed to EC2 (ap-northeast-1) via SSM; Vercel ignores it.
 - Keep all visual values in the global semantic theme and use existing UI controls; this preserves consistent theming.
