@@ -12,7 +12,7 @@ The site must include:
      * Card 3: "可商用授權 (Commercial-use ready)" — you own the output, use it however you like
    - Footer with copyright "© 2026 Video Speed Reader"
 
-2. Authentication using Lovable's built-in Supabase-style auth (use whatever auth backend Lovable provides by default — Lovable Cloud is fine for this v1; we'll swap to a user-owned Supabase project in a later step):
+2. Authentication using the project's own Supabase project (Supabase Auth, email + password):
    - Sign Up page with email + password
    - Sign In page with email + password
    - Sign Out functionality
@@ -58,6 +58,6 @@ This is a static Vite + React single-page app with client-side routing (React Ro
 
 - `npm run build` → static output in `dist/`
 - `vercel.json` rewrites all paths to `index.html`, so deep links like `/app` resolve client-side.
-- Required env vars (build time): `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`.
+- Required env vars (build time): `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY` (the `sb_publishable_*` key, which replaces the legacy anon key). Set them in `.env` locally and in Vercel → Project → Settings → Environment Variables.
 
 Routes: `/` (landing), `/auth` and `/sign-in` (sign in), `/sign-up`, `/app` (signed-in only).

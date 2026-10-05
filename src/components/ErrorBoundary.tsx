@@ -1,6 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { reportLovableError } from "@/lib/lovable-error-reporting";
 
 type State = { error: unknown };
 
@@ -13,7 +12,6 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
 
   override componentDidCatch(error: unknown, info: ErrorInfo) {
     console.error(error, info.componentStack);
-    reportLovableError(error, { boundary: "root_error_boundary" });
   }
 
   override render() {

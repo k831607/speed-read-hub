@@ -10,7 +10,7 @@
 <!-- LOVABLE:END -->
 
 ## Application rules
-- Use the generated Cloud browser client and only the default auth user record for v1; no custom schema is needed.
+- Backend is the project's own Supabase project. Use the single client in src/integrations/supabase/client.ts, configured only via VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY; use only the default auth user record for v1, no custom schema.
 - This is a plain Vite + React SPA (no SSR). Routing is client-side with React Router in src/AppRoutes.tsx; vercel.json rewrites every path to index.html so deep links resolve.
 - Keep public auth pages at /auth (alias /sign-in) and /sign-up, and protected pages under the RequireAuth guard (/app).
 - Keep one root auth listener and expose session state through AuthContext; this keeps header actions and route invalidation consistent.
